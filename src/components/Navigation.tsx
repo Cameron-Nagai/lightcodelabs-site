@@ -18,7 +18,7 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <h1 className="text-2xl font-bold text-cyan-400 hover:text-cyan-300 transition-colors duration-300">
-              Light<span className="text-blue-400">Code</span> Labs
+              <span className="text-white">Light</span><span className="text-blue-400">Code</span> <span className="text-white">Labs</span>
             </h1>
           </div>
 
