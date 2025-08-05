@@ -14,8 +14,8 @@ const Portfolio = () => {
     {
       title: 'The International Church of Cannabis',
       description: 'Spiritual and artistic digital platform celebrating creativity and consciousness.',
-      image: 'https://images.pexels.com/photos/5380590/pexels-photo-5380590.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=300&w=400',
-      tags: ['Spiritual', 'Art', 'Community'],
+      image: '/public/IMG_9594.JPG',
+      tags: ['Public Art', 'Audio/Visual', 'Architectural'],
       liveUrl: '#',
       githubUrl: '#'
     },
