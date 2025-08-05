@@ -134,7 +134,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-gray-300 font-medium">Email</p>
-                    <p className="text-gray-400">hello@lightcodelabs.com</p>
+                    <p className="text-gray-400">hello@lightcode labs.com</p>
                   </div>
                 </div>
                 
