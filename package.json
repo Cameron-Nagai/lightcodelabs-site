@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "rm -rf docs && vite build",
+    "build": "rm -rf docs dist && vite build",
+    "deploy": "rm -rf docs dist && vite build && touch docs/.nojekyll",
     "lint": "eslint .",
     "preview": "vite preview"
   },
