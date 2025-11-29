@@ -71,11 +71,11 @@ function App() {
   ];
 
   const ledDesignPortfolio = [
-    { url: 'https://images.pexels.com/photos/2263436/pexels-photo-2263436.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Custom LED Wall Installation', type: 'image' },
-    { url: 'https://live.staticflickr.com/65535/54929072725_81134c87c1_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Interactive LED Floor', type: 'image' },
-    { url: 'https://live.staticflickr.com/65535/54929072665_6859056d4b_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Architectural LED Mapping', type: 'image' },
-    { url: 'https://live.staticflickr.com/65535/54927900877_eb7a0f0029_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Dynamic Color Changing System', type: 'image' },
-    { url: 'https://live.staticflickr.com/65535/54929014629_7126a07488_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'LED Sculpture Design', type: 'image' }
+    { url: 'https://live.staticflickr.com/65535/54929014629_7126a07488_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'LED Sculpture Design', type: 'image' },
+    { url: 'https://images.pexels.com/photos/2263436/pexels-photo-2263436.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Custom LED Stage Installations', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54929072725_81134c87c1_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Immersive Interactive LED Installations', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54929072665_6859056d4b_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Architectural Lighting Design', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54927900877_eb7a0f0029_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Dynamic Color Changing Systems', type: 'image' }
   ];
 
   const experientialPortfolio = [
