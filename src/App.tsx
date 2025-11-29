@@ -51,35 +51,39 @@ function App() {
   ];
 
   const lightingRentalsPortfolio = [
-    { url: 'https://i.imgur.com/cAZhXp5.jpeg', caption: 'Concert Stage Lighting Setup' },
-    { url: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Live Event Production' },
-    { url: 'https://live.staticflickr.com/65535/54928984748_9c5d2c28c2_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Stage & Truss Configuration' },
-    { url: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Professional Lighting Rig' },
-    { url: 'https://images.pexels.com/photos/2102568/pexels-photo-2102568.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Venue Lighting Design' }
+    { 
+      // Using animated WebP/GIF for smooth, reliable playback
+      url: 'https://i.imgur.com/3cHHvX4.gif',
+      caption: 'Full Room Event Lighting', 
+      type: 'image' 
+    },
+    { url: 'https://i.imgur.com/VFkCnKM.jpeg', caption: 'Custom Stage Design', type: 'image' },
+    { url: 'https://i.imgur.com/cAZhXp5.jpeg', caption: 'Stage Lighting Packages', type: 'image' },
+    { url: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Live Event Production', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54928984748_9c5d2c28c2_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Stage & Truss Configuration', type: 'image' },
+    { url: 'https://images.pexels.com/photos/2102568/pexels-photo-2102568.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Venue Lighting Design', type: 'image' }
   ];
 
   const soundRentalsPortfolio = [
-    { url: 'https://images.pexels.com/photos/2102568/pexels-photo-2102568.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Professional Sound System' },
-    { url: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'DJ Equipment & Audio Setup' },
-    { url: 'https://images.pexels.com/photos/1047442/pexels-photo-1047442.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Speaker Configuration' },
-    { url: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Live Sound Production' },
-    { url: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Concert Audio Engineering' }
+    { url: 'https://i.imgur.com/AbUUj8k.jpeg', caption: 'Boutique Void Sound System', type: 'image' },
+    { url: 'https://i.imgur.com/igKiLJO.png', caption: 'DJ Equipment & Audio Setup', type: 'image' },
+    { url: 'https://static1.squarespace.com/static/6470e041f3511e5436207665/6470e053f3511e5436207be1/6484bed25290055c8981bf08/1709328401620/Kalid.png?format=1500w', caption: 'Live Sound Audio Engineering', type: 'image' }
   ];
 
   const ledDesignPortfolio = [
-    { url: 'https://images.pexels.com/photos/2263436/pexels-photo-2263436.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Custom LED Wall Installation' },
-    { url: 'https://live.staticflickr.com/65535/54929072725_81134c87c1_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Interactive LED Floor' },
-    { url: 'https://live.staticflickr.com/65535/54929072665_6859056d4b_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Architectural LED Mapping' },
-    { url: 'https://live.staticflickr.com/65535/54927900877_eb7a0f0029_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Dynamic Color Changing System' },
-    { url: 'https://live.staticflickr.com/65535/54929014629_7126a07488_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'LED Sculpture Design' }
+    { url: 'https://images.pexels.com/photos/2263436/pexels-photo-2263436.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Custom LED Wall Installation', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54929072725_81134c87c1_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Interactive LED Floor', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54929072665_6859056d4b_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Architectural LED Mapping', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54927900877_eb7a0f0029_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Dynamic Color Changing System', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54929014629_7126a07488_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'LED Sculpture Design', type: 'image' }
   ];
 
   const experientialPortfolio = [
-    { url: 'https://live.staticflickr.com/65535/54928011042_bdcacd477d_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Immersive Brand Activation' },
-    { url: 'https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Interactive Installation' },
-    { url: 'https://live.staticflickr.com/65535/54928880071_81bf5cdf56_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: '360° Projection Mapping' },
-    { url: 'https://live.staticflickr.com/65535/54929183070_b24b11d7a6_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Multi-Sensory Experience' },
-    { url: 'https://live.staticflickr.com/65535/54929183055_de23d07e69_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Corporate Event Design' }
+    { url: 'https://i.imgur.com/JSQC9Gz.gif', caption: 'Interactive Installations', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54928011042_bdcacd477d_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Immersive Brand Activation', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54928880071_81bf5cdf56_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: '360° Led Installations', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54929183070_b24b11d7a6_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Multi-Sensory Experiences', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54929183055_de23d07e69_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Corporate Event Design', type: 'image' }
   ];
 
   return (
