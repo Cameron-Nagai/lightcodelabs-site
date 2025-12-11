@@ -1,7 +1,7 @@
 import { LucideIcon } from 'lucide-react';
 
 interface ServiceCardProps {
-  icon: LucideIcon;
+  icon?: LucideIcon;
   title: string;
   description: string;
   gradient: string;
@@ -16,9 +16,11 @@ function ServiceCard({ icon: Icon, title, description, gradient, onClick }: Serv
     >
       <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
 
-      <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${gradient} mb-6`}>
-        <Icon className="w-8 h-8 text-white" />
-      </div>
+      {Icon && (
+        <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${gradient} mb-6`}>
+          <Icon className="w-8 h-8 text-white" />
+        </div>
+      )}
 
       <h3 className="text-2xl font-bold mb-3 group-hover:text-cyan-400 transition-colors">
         {title}
