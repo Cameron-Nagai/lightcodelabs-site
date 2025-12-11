@@ -169,7 +169,7 @@ function App() {
             Transform ordinary spaces into extraordinary experiences with cutting-edge lighting, sound, and experiential design
           </p>
           <button
-            onClick={() => scrollToSection(servicesRef)}
+            onClick={() => scrollToSection(lightingRentalsRef)}
             className="bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
           >
             Explore Our Services
@@ -262,7 +262,7 @@ function App() {
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg">
               <Mail className="w-8 h-8 text-cyan-400 mb-3" />
               <h3 className="font-semibold mb-2">Email Us</h3>
-              <p className="text-gray-300 text-center">sales@lightcodelabs.studio</p>
+              <p className="text-gray-300 text-center">hello@lightcodelabs.studio</p>
             </div>
           </div>
 
