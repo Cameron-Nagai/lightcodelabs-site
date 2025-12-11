@@ -21,28 +21,24 @@ function App() {
 
   const services = [
     {
-      icon: Lightbulb,
       title: 'Event Lighting Rentals',
       description: 'Professional lighting equipment for events of all sizes',
       ref: lightingRentalsRef,
       gradient: 'from-blue-600 to-cyan-500'
     },
     {
-      icon: Music,
       title: 'Event Sound Rentals',
       description: 'Professional audio equipment and technical support',
       ref: soundRentalsRef,
       gradient: 'from-purple-600 to-blue-500'
     },
     {
-      icon: Zap,
       title: 'Custom LED Lighting Design',
       description: 'Innovative LED installations that transform spaces',
       ref: ledDesignRef,
       gradient: 'from-orange-500 to-pink-500'
     },
     {
-      icon: Sparkles,
       title: 'Experiential Design for Events',
       description: 'Immersive experiences that captivate and engage',
       ref: experientialRef,
@@ -53,37 +49,34 @@ function App() {
   const lightingRentalsPortfolio = [
     { 
       // Using animated WebP/GIF for smooth, reliable playback
-      url: 'https://i.imgur.com/3cHHvX4.gif',
-      caption: 'Full Room Event Lighting', 
+      url: 'https://i.imgur.com/nYgbJ3j.gif?auto=compress&cs=tinysrgb&w=1200',
+      caption: 'Live Event Production', 
       type: 'image' 
     },
-    { url: 'https://i.imgur.com/VFkCnKM.jpeg', caption: 'Custom Stage Design', type: 'image' },
-    { url: 'https://i.imgur.com/cAZhXp5.jpeg', caption: 'Stage Lighting Packages', type: 'image' },
-    { url: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Live Event Production', type: 'image' },
-    { url: 'https://live.staticflickr.com/65535/54928984748_9c5d2c28c2_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Stage & Truss Configuration', type: 'image' },
-    { url: 'https://images.pexels.com/photos/2102568/pexels-photo-2102568.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Venue Lighting Design', type: 'image' }
+    { url: 'https://i.imgur.com/VFkCnKM.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Custom Stage Design', type: 'image' },
+    { url: 'https://i.imgur.com/cAZhXp5.jpeg', caption: 'Concert Stage Packages', type: 'image' },
+    { url: 'https://i.imgur.com/LmSOeyZ.gif?auto=compress&cs=tinysrgb&w=1200', caption: 'Venue Lighting Design', type: 'image' }
   ];
 
   const soundRentalsPortfolio = [
-    { url: 'https://i.imgur.com/AbUUj8k.jpeg', caption: 'Boutique Void Sound System', type: 'image' },
-    { url: 'https://i.imgur.com/igKiLJO.png', caption: 'DJ Equipment & Audio Setup', type: 'image' },
-    { url: 'https://static1.squarespace.com/static/6470e041f3511e5436207665/6470e053f3511e5436207be1/6484bed25290055c8981bf08/1709328401620/Kalid.png?format=1500w', caption: 'Live Sound Audio Engineering', type: 'image' }
+    { url: 'https://i.imgur.com/AbUUj8k.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Sculpted Void Sound System Rental', type: 'image' },
+    { url: 'https://i.imgur.com/igKiLJO.png?auto=compress&cs=tinysrgb&w=1200', caption: 'DJ Equipment & Audio Setup', type: 'image' },
+    { url: 'https://static1.squarespace.com/static/6470e041f3511e5436207665/6470e053f3511e5436207be1/6484bed25290055c8981bf08/1709328401620/Kalid.png?auto=compress&cs=tinysrgb&w=1200', caption: 'Live Sound Audio Engineering', type: 'image' }
   ];
 
   const ledDesignPortfolio = [
-    { url: 'https://live.staticflickr.com/65535/54929014629_7126a07488_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'LED Sculpture Design', type: 'image' },
-    { url: 'https://images.pexels.com/photos/2263436/pexels-photo-2263436.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Custom LED Stage Installations', type: 'image' },
-    { url: 'https://live.staticflickr.com/65535/54929072725_81134c87c1_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Immersive Interactive LED Installations', type: 'image' },
-    { url: 'https://live.staticflickr.com/65535/54929072665_6859056d4b_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Architectural Lighting Design', type: 'image' },
-    { url: 'https://live.staticflickr.com/65535/54927900877_eb7a0f0029_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Dynamic Color Changing Systems', type: 'image' }
+    { url: 'https://i.imgur.com/rGr4UbW.gif?auto=compress&cs=tinysrgb&w=1200', caption: 'LED Sculpture Design', type: 'image' },
+        { url: 'https://i.imgur.com/SyH2oRj.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Various Modular Elements', type: 'image' },
+    { url: 'https://i.imgur.com/NHSDkVx.gif?auto=compress&cs=tinysrgb&w=1200', caption: 'Interactive Installations', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54929072665_6859056d4b_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Architectural Lighting Design', type: 'image' }
   ];
 
   const experientialPortfolio = [
-    { url: 'https://i.imgur.com/JSQC9Gz.gif', caption: 'Interactive Installations', type: 'image' },
-    { url: 'https://live.staticflickr.com/65535/54928011042_bdcacd477d_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Immersive Brand Activation', type: 'image' },
+    { url: 'https://i.imgur.com/3us5x6X.gif?auto=compress&cs=tinysrgb&w=1200', caption: 'Multi-Sensory Experiences', type: 'image' },
     { url: 'https://live.staticflickr.com/65535/54928880071_81bf5cdf56_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: '360° Led Installations', type: 'image' },
-    { url: 'https://live.staticflickr.com/65535/54929183070_b24b11d7a6_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Multi-Sensory Experiences', type: 'image' },
-    { url: 'https://live.staticflickr.com/65535/54929183055_de23d07e69_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Corporate Event Design', type: 'image' }
+    { url: 'https://live.staticflickr.com/65535/54929183070_b24b11d7a6_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Immersive Space Design', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54928011042_bdcacd477d_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Brand Activation', type: 'image' },
+    { url: 'https://live.staticflickr.com/65535/54972794923_52fbc8834a_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Gong Fu Tea Ceremony', type: 'image' }
   ];
 
   return (
@@ -186,7 +179,6 @@ function App() {
             {services.map((service, index) => (
               <ServiceCard
                 key={index}
-                icon={service.icon}
                 title={service.title}
                 description={service.description}
                 gradient={service.gradient}
@@ -262,11 +254,11 @@ function App() {
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg">
               <Mail className="w-8 h-8 text-cyan-400 mb-3" />
               <h3 className="font-semibold mb-2">Email Us</h3>
-              <p className="text-gray-300 text-center">sales@lightcodelabs.studio</p>
+              <p className="text-gray-300 text-center">hello@lightcodelabs.studio</p>
             </div>
           </div>
 
-          <ContactForm />
+          <ContactForm />asdf
         </div>
       </section>
 
