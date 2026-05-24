@@ -1,8 +1,7 @@
 import { useState, useRef } from 'react';
-import { Zap, Music, Sparkles, Mail, Phone, MapPin, Menu, X, Lightbulb } from 'lucide-react';
+import { Zap, Music, Sparkles, Mail, Menu, X, Lightbulb } from 'lucide-react';
 import Carousel from './components/Carousel';
 import ServiceCard from './components/ServiceCard';
-import ContactForm from './components/ContactForm';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -258,7 +257,6 @@ function App() {
             </div>
           </div>
 
-          <ContactForm />asdf
         </div>
       </section>
 
