@@ -99,7 +99,7 @@ function App() {
       audience: '100 – 500 guests',
       system: '2× Void Arcline 218 subs + 2× Void Air Motion mains',
       bestFor: 'Mid-size weddings, corporate events, DJ sets',
-      price: 'from $2,500',
+      price: 'from $3,000',
       href: '#packages'
     },
     {
@@ -130,7 +130,7 @@ function App() {
     {
       tier: 'Medium',
       audience: '100 – 500 guests',
-      price: '$2,500',
+      price: '$3,000',
       priceNote: 'starting, with delivery & setup',
       system: '2× Void Arcline 218, 2× Void Air Motion Large',
       includes: [
