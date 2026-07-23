@@ -319,6 +319,16 @@ function App() {
               />
             ))}
           </div>
+
+          <div className="mt-12 text-center">
+            <button
+              onClick={scrollToSoundQuote}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Get a Quote
+            </button>
+          </div>
         </div>
       </section>
 
@@ -327,12 +337,28 @@ function App() {
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Event Sound Rentals</h2>
           <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
-            Crystal-clear audio for every occasion. Our professional sound systems include speakers, microphones, mixers, and DJ equipment — with delivery, setup, and an on-site operator.
+            Crystal-clear audio for every occasion. Our professional sound systems include speakers, microphones, mixers, and DJ equipment with delivery, setup, and an on-site operator.
           </p>
 
           <h3 className="text-2xl font-semibold text-center mb-8 text-cyan-400">
             Available Sound Equipment
           </h3>
+
+          <div className="my-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button
+              onClick={() => scrollToSection(soundSystemPickerRef)}
+              className="bg-gray-800 hover:bg-gray-700 text-cyan-400 font-semibold px-6 py-3 rounded-lg border border-gray-700 hover:border-cyan-400 transition-colors"
+            >
+              Help Me Pick a System
+            </button>
+            <button
+              onClick={() => scrollToSection(soundPackagesRef)}
+              className="bg-gray-800 hover:bg-gray-700 text-cyan-400 font-semibold px-6 py-3 rounded-lg border border-gray-700 hover:border-cyan-400 transition-colors"
+            >
+              Sound Rental Packages
+            </button>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
             {soundEquipment.map((item, index) => (
               <div
@@ -352,22 +378,17 @@ function App() {
             ))}
           </div>
 
-          <div className="my-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Carousel images={soundRentalsPortfolio} />
+
+          <div className="mt-12 text-center">
             <button
-              onClick={() => scrollToSection(soundSystemPickerRef)}
-              className="bg-gray-800 hover:bg-gray-700 text-cyan-400 font-semibold px-6 py-3 rounded-lg border border-gray-700 hover:border-cyan-400 transition-colors"
+              onClick={scrollToSoundQuote}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
             >
-              Pick a System
-            </button>
-            <button
-              onClick={() => scrollToSection(soundPackagesRef)}
-              className="bg-gray-800 hover:bg-gray-700 text-cyan-400 font-semibold px-6 py-3 rounded-lg border border-gray-700 hover:border-cyan-400 transition-colors"
-            >
-              Sound Rental Packages
+              <MessageCircle className="w-5 h-5" />
+              Get a Quote
             </button>
           </div>
-
-          <Carousel images={soundRentalsPortfolio} />
         </div>
       </section>
 
@@ -413,6 +434,16 @@ function App() {
             >
               See full package details
             </button>
+
+            <div className="mt-12 text-center">
+              <button
+                onClick={scrollToSoundQuote}
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
+              >
+                <MessageCircle className="w-5 h-5" />
+                Get a Quote
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -469,7 +500,7 @@ function App() {
               className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
             >
               <MessageCircle className="w-5 h-5" />
-              Get a Sound Quote
+              Get a Quote
             </button>
           </div>
         </div>
@@ -497,6 +528,16 @@ function App() {
               </div>
             ))}
           </div>
+
+          <div className="mt-12 text-center">
+            <button
+              onClick={scrollToSoundQuote}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Get a Quote
+            </button>
+          </div>
         </div>
       </section>
 
@@ -507,6 +548,16 @@ function App() {
             Transform your venue with professional-grade lighting equipment. From spotlights and par cans to moving heads and stage lighting rigs, we provide everything needed for stunning visual impact.
           </p>
           <Carousel images={lightingRentalsPortfolio} />
+
+          <div className="mt-12 text-center">
+            <button
+              onClick={scrollToSoundQuote}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Get a Quote
+            </button>
+          </div>
         </div>
       </section>
 
@@ -517,6 +568,16 @@ function App() {
             Our custom LED designs turn venues into works of art. From pixel-mapped installations to dynamic color systems, we create lighting that responds to music, motion, and mood.
           </p>
           <Carousel images={ledDesignPortfolio} />
+
+          <div className="mt-12 text-center">
+            <button
+              onClick={scrollToSoundQuote}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Get a Quote
+            </button>
+          </div>
         </div>
       </section>
 
@@ -527,6 +588,16 @@ function App() {
             Create unforgettable moments with immersive environments that engage all senses. Our experiential designs blend technology, art, and storytelling to deliver truly unique event experiences.
           </p>
           <Carousel images={experientialPortfolio} />
+
+          <div className="mt-12 text-center">
+            <button
+              onClick={scrollToSoundQuote}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Get a Quote
+            </button>
+          </div>
         </div>
       </section>
 
@@ -556,7 +627,7 @@ function App() {
         aria-label="Get a Quote"
       >
         <MessageCircle className="w-5 h-5" />
-        <span className="hidden sm:inline">Get a Sound Quote</span>
+        <span className="hidden sm:inline">Get a Quote</span>
       </button>
     </div>
   );
