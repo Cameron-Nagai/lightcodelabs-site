@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Zap, Music, Sparkles, Menu, X, Lightbulb, Calendar, MessageCircle } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
 import Carousel from './components/Carousel';
 import ServiceCard from './components/ServiceCard';
 import ContactForm from './components/ContactForm';
@@ -219,7 +219,6 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-2">
-              <Sparkles className="w-8 h-8 text-cyan-400" />
               <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 Lightcode Labs
               </span>
@@ -228,12 +227,6 @@ function App() {
             <div className="hidden md:flex space-x-8">
               <button onClick={() => scrollToSection(soundRentalsRef)} className="hover:text-cyan-400 transition-colors">
                 Sound Rentals
-              </button>
-              <button onClick={() => scrollToSection(soundSystemPickerRef)} className="hover:text-cyan-400 transition-colors">
-                Pick a System
-              </button>
-              <button onClick={() => scrollToSection(soundPackagesRef)} className="hover:text-cyan-400 transition-colors">
-                Packages
               </button>
               <button onClick={() => scrollToSection(lightingRentalsRef)} className="hover:text-cyan-400 transition-colors">
                 Lighting
@@ -260,12 +253,6 @@ function App() {
             <div className="px-4 py-4 space-y-3">
               <button onClick={() => scrollToSection(soundRentalsRef)} className="block w-full text-left py-2 hover:text-cyan-400 transition-colors">
                 Sound Rentals
-              </button>
-              <button onClick={() => scrollToSection(soundSystemPickerRef)} className="block w-full text-left py-2 hover:text-cyan-400 transition-colors">
-                Pick a System
-              </button>
-              <button onClick={() => scrollToSection(soundPackagesRef)} className="block w-full text-left py-2 hover:text-cyan-400 transition-colors">
-                Packages
               </button>
               <button onClick={() => scrollToSection(lightingRentalsRef)} className="block w-full text-left py-2 hover:text-cyan-400 transition-colors">
                 Lighting
@@ -310,7 +297,7 @@ function App() {
         </div>
       </header>
 
-      <section ref={servicesRef} className="py-20 px-4 bg-gray-900">
+      <section ref={servicesRef} className="py-20 px-4 bg-gray-900 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
             Our Services
@@ -330,12 +317,9 @@ function App() {
       </section>
 
       {/* === SOUND RENTAL SECTION === */}
-      <section ref={soundRentalsRef} className="py-20 px-4 bg-gray-900">
+      <section ref={soundRentalsRef} className="py-20 px-4 bg-gray-900 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-center mb-4">
-            <Music className="w-12 h-12 text-blue-400 mr-4" />
-            <h2 className="text-4xl md:text-5xl font-bold">Event Sound Rentals</h2>
-          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Event Sound Rentals</h2>
           <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
             Crystal-clear audio for every occasion. Our professional sound systems include speakers, microphones, mixers, and DJ equipment — with delivery, setup, and an on-site operator.
           </p>
@@ -364,25 +348,27 @@ function App() {
 
           <Carousel images={soundRentalsPortfolio} />
 
-          <div className="mt-10 text-center">
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => scrollToSection(soundSystemPickerRef)}
-              className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-cyan-400 font-semibold px-6 py-3 rounded-lg border border-gray-700 hover:border-cyan-400 transition-colors"
+              className="bg-gray-800 hover:bg-gray-700 text-cyan-400 font-semibold px-6 py-3 rounded-lg border border-gray-700 hover:border-cyan-400 transition-colors"
             >
-              <Calendar className="w-5 h-5" />
-              Which system do I need?
+              Pick a System
+            </button>
+            <button
+              onClick={() => scrollToSection(soundPackagesRef)}
+              className="bg-gray-800 hover:bg-gray-700 text-cyan-400 font-semibold px-6 py-3 rounded-lg border border-gray-700 hover:border-cyan-400 transition-colors"
+            >
+              Sound Rental Packages
             </button>
           </div>
         </div>
       </section>
 
       {/* === WHICH SYSTEM DO I NEED? === */}
-      <section ref={soundSystemPickerRef} className="py-20 px-4 bg-gray-800" id="system-picker">
+      <section ref={soundSystemPickerRef} className="py-20 px-4 bg-gray-800 scroll-mt-16" id="system-picker">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center justify-center mb-4">
-            <Calendar className="w-10 h-10 text-cyan-400 mr-3" />
-            <h2 className="text-3xl md:text-4xl font-bold">Which system do I need?</h2>
-          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Which system do I need?</h2>
           <p className="text-lg text-gray-300 text-center mb-10 max-w-3xl mx-auto">
             Match your audience size to the right PA rig. All prices include delivery, setup, and on-site operator.
           </p>
@@ -426,12 +412,9 @@ function App() {
       </section>
 
       {/* === SOUND PACKAGES === */}
-      <section ref={soundPackagesRef} className="py-20 px-4 bg-gray-900" id="packages">
+      <section ref={soundPackagesRef} className="py-20 px-4 bg-gray-900 scroll-mt-16" id="packages">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-center mb-4">
-            <Sparkles className="w-10 h-10 text-purple-400 mr-3" />
-            <h2 className="text-3xl md:text-4xl font-bold">Sound Rental Packages</h2>
-          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Sound Rental Packages</h2>
           <p className="text-lg text-gray-300 text-center mb-10 max-w-3xl mx-auto">
             Three tiers to fit any event size. Every package includes delivery, setup, and a dedicated sound operator.
           </p>
@@ -487,12 +470,9 @@ function App() {
       </section>
 
       {/* === USE CASES === */}
-      <section ref={soundUseCasesRef} className="py-20 px-4 bg-gray-800">
+      <section ref={soundUseCasesRef} className="py-20 px-4 bg-gray-800 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-center mb-4">
-            <Sparkles className="w-10 h-10 text-emerald-400 mr-3" />
-            <h2 className="text-3xl md:text-4xl font-bold">Use Cases</h2>
-          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Use Cases</h2>
           <p className="text-lg text-gray-300 text-center mb-10 max-w-3xl mx-auto">
             Different events need different systems. Here's how we match the rig to the room.
           </p>
@@ -503,7 +483,6 @@ function App() {
                 key={index}
                 className="bg-gray-900 rounded-xl p-6 border border-gray-700 hover:border-emerald-500/40 transition-colors"
               >
-                <div className="text-3xl mb-3">{uc.icon}</div>
                 <h3 className="text-xl font-bold mb-2">{uc.title}</h3>
                 <p className="text-sm text-gray-400 mb-4 leading-relaxed">{uc.description}</p>
                 <div className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
@@ -515,12 +494,9 @@ function App() {
         </div>
       </section>
 
-      <section ref={lightingRentalsRef} className="py-20 px-4 bg-gray-800">
+      <section ref={lightingRentalsRef} className="py-20 px-4 bg-gray-800 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-center mb-4">
-            <Lightbulb className="w-12 h-12 text-cyan-400 mr-4" />
-            <h2 className="text-4xl md:text-5xl font-bold">Event Lighting Rentals</h2>
-          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Event Lighting Rentals</h2>
           <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
             Transform your venue with professional-grade lighting equipment. From spotlights and par cans to moving heads and stage lighting rigs, we provide everything needed for stunning visual impact.
           </p>
@@ -528,12 +504,9 @@ function App() {
         </div>
       </section>
 
-      <section ref={ledDesignRef} className="py-20 px-4 bg-gray-800">
+      <section ref={ledDesignRef} className="py-20 px-4 bg-gray-800 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-center mb-4">
-            <Zap className="w-12 h-12 text-orange-400 mr-4" />
-            <h2 className="text-4xl md:text-5xl font-bold">Custom LED Lighting Design</h2>
-          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Custom LED Lighting Design</h2>
           <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
             Our custom LED designs turn venues into works of art. From pixel-mapped installations to dynamic color systems, we create lighting that responds to music, motion, and mood.
           </p>
@@ -541,12 +514,9 @@ function App() {
         </div>
       </section>
 
-      <section ref={experientialRef} className="py-20 px-4 bg-gray-900">
+      <section ref={experientialRef} className="py-20 px-4 bg-gray-900 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-center mb-4">
-            <Sparkles className="w-12 h-12 text-emerald-400 mr-4" />
-            <h2 className="text-4xl md:text-5xl font-bold">Experiential Design for Events</h2>
-          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Experiential Design for Events</h2>
           <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
             Create unforgettable moments with immersive environments that engage all senses. Our experiential designs blend technology, art, and storytelling to deliver truly unique event experiences.
           </p>
@@ -554,7 +524,7 @@ function App() {
         </div>
       </section>
 
-      <section ref={contactRef} className="py-20 px-4 bg-gray-800">
+      <section ref={contactRef} className="py-20 px-4 bg-gray-800 scroll-mt-16">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             Let's Create Something Amazing
