@@ -63,19 +63,9 @@ function App() {
   ];
 
   // Sound rental inventory
-          <div className="mt-10 text-center">
-            <button
-              onClick={scrollToSoundQuote}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Get a Sound Quote
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* === USE CASES === */
+  const soundEquipment = [
+    {
+      name: 'Void Air Motion v2',
       quantity: 4,
       blurb: 'Visually stunning, fiberglass sculpted, high-output loudspeaker. Ideal as mains speakers for 500–1000 person events.'
     },
