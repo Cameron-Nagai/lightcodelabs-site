@@ -77,12 +77,12 @@ function App() {
     {
       name: 'QSC K12.2',
       quantity: 2,
-      blurb: '12" powered loudspeaker ideal as monitors, or Mains for small scale events.'
+      blurb: '12" powered loudspeakers ideal as monitors or mains for small scale events.'
     },
     {
       name: 'Cerwin-Vega CVA-118',
       quantity: 1,
-      blurb: '18" Active Subwoofer. Ideal for small scale events as low end for DJ monitors.'
+      blurb: '18" Active Subwoofer ideal for small scale events or DJ monitor'
     }
   ];
 
