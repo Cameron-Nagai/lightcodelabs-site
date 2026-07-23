@@ -88,7 +88,7 @@ function App() {
 
   const ledDesignPortfolio = [
     { url: 'https://i.imgur.com/rGr4UbW.gif?auto=compress&cs=tinysrgb&w=1200', caption: 'LED Sculpture Design', type: 'image' },
-        { url: 'https://i.imgur.com/SyH2oRj.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Various Modular Elements', type: 'image' },
+        { url: 'https://i.imgur.com/SyH2oRj.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Experiential Design', type: 'image' },
     { url: 'https://i.imgur.com/NHSDkVx.gif?auto=compress&cs=tinysrgb&w=1200', caption: 'Interactive Installations', type: 'image' },
     { url: 'https://live.staticflickr.com/65535/54929072665_6859056d4b_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Architectural Lighting Design', type: 'image' }
   ];
