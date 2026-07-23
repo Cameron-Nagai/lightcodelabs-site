@@ -67,7 +67,7 @@ function App() {
     {
       name: 'Air Motion v2',
       quantity: 2,
-      blurb: 'Compact, high-output loudspeaker — ideal for mains and side-fill at events of any size.'
+      blurb: 'Visually stunning, fiberglass sculpted, high-output loudspeaker. Ideal as mains speakers for 500-1000 person events.'
     },
     {
       name: 'Arcline 218 Subwoofer',
@@ -77,7 +77,12 @@ function App() {
     {
       name: 'QSC K12.2',
       quantity: 2,
-      blurb: '12" powered loudspeaker (2000W Class D) — versatile mains, monitors, or DJ setup.'
+      blurb: '12" powered loudspeaker ideal as monitors, or Mains for small scale events.'
+    },
+    {
+      name: 'Cerwin-Vega CVA-118',
+      quantity: 1,
+      blurb: '18" Active Subwoofer — ideal for small scale events as low end for DJ monitors.'
     }
   ];
 
