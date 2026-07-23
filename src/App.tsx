@@ -237,7 +237,7 @@ function App() {
           <h3 className="text-2xl font-semibold text-center mb-8 text-cyan-400">
             Available Sound Equipment
           </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
             {soundEquipment.map((item, index) => (
               <div
                 key={index}
