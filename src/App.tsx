@@ -549,11 +549,11 @@ function App() {
         </div>
       </footer>
 
-      {/* Sticky "Get a Sound Quote" CTA — always visible on mobile, floats on desktop */}
+      {/* Sticky "Get a Quote" CTA — always visible on mobile, floats on desktop */}
       <button
         onClick={scrollToSoundQuote}
         className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-5 py-3 rounded-full shadow-2xl shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-200 flex items-center gap-2"
-        aria-label="Get a Sound Quote"
+        aria-label="Get a Quote"
       >
         <MessageCircle className="w-5 h-5" />
         <span className="hidden sm:inline">Get a Sound Quote</span>
