@@ -82,7 +82,7 @@ function App() {
     {
       name: 'Cerwin-Vega CVA-118',
       quantity: 1,
-      blurb: '18" Active Subwoofer — ideal for small scale events as low end for DJ monitors.'
+      blurb: '18" Active Subwoofer. Ideal for small scale events as low end for DJ monitors.'
     }
   ];
 
