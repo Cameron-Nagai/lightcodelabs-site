@@ -63,6 +63,24 @@ function App() {
     { url: 'https://static1.squarespace.com/static/6470e041f3511e5436207665/6470e053f3511e5436207be1/6484bed25290055c8981bf08/1709328401620/Kalid.png?auto=compress&cs=tinysrgb&w=1200', caption: 'Live Sound Audio Engineering', type: 'image' }
   ];
 
+  const soundEquipment = [
+    {
+      name: 'Air Motion v2',
+      quantity: 2,
+      blurb: 'Compact, high-output loudspeaker — ideal for mains and side-fill at events of any size.'
+    },
+    {
+      name: 'Arcline 218 Subwoofer',
+      quantity: 2,
+      blurb: 'Dual 18" subwoofer delivering deep, room-filling low end for DJ sets and live shows.'
+    },
+    {
+      name: 'QSC K12.2',
+      quantity: 2,
+      blurb: '12" powered loudspeaker (2000W Class D) — versatile mains, monitors, or DJ setup.'
+    }
+  ];
+
   const ledDesignPortfolio = [
     { url: 'https://i.imgur.com/rGr4UbW.gif?auto=compress&cs=tinysrgb&w=1200', caption: 'LED Sculpture Design', type: 'image' },
         { url: 'https://i.imgur.com/SyH2oRj.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Various Modular Elements', type: 'image' },
@@ -210,6 +228,29 @@ function App() {
           <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
             Crystal-clear audio for every occasion. Our professional sound systems include speakers, microphones, mixers, and DJ equipment, with complete technical support and expert setup services.
           </p>
+
+          <h3 className="text-2xl font-semibold text-center mb-8 text-cyan-400">
+            Available Sound Equipment
+          </h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {soundEquipment.map((item, index) => (
+              <div
+                key={index}
+                className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-cyan-400 transition-colors"
+              >
+                <div className="text-cyan-400 text-sm font-semibold uppercase tracking-wider mb-2">
+                  {item.quantity}× available
+                </div>
+                <h4 className="text-xl font-bold mb-2 text-white">
+                  {item.name}
+                </h4>
+                <p className="text-gray-400 leading-relaxed">
+                  {item.blurb}
+                </p>
+              </div>
+            ))}
+          </div>
+
           <Carousel images={soundRentalsPortfolio} />
         </div>
       </section>
