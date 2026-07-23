@@ -66,7 +66,7 @@ function App() {
   const soundEquipment = [
     {
       name: 'Void Air Motion v2',
-      quantity: 2,
+      quantity: 4,
       blurb: 'Visually stunning, fiberglass sculpted, high-output loudspeaker. Ideal as mains speakers for 500–1000 person events.'
     },
     {
