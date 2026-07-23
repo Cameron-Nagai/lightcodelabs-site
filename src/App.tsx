@@ -168,6 +168,12 @@ function App() {
       recommended: 'Small or Medium package'
     },
     {
+      title: 'Private Events',
+      icon: '🎉',
+      description: 'Great sound for birthdays, anniversaries, backyard parties, and celebrations of any size. Clean, punchy music playback plus wireless mic options for speeches, toasts, karaoke, or announcements.',
+      recommended: 'Small or Medium package'
+    },
+    {
       title: 'Corporate Events',
       icon: '🏢',
       description: 'Reliable speech reinforcement for conferences, product launches, and town halls. Backup mics and redundant signal paths.',
