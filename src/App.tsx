@@ -235,10 +235,13 @@ function App() {
                 Sound Rentals
               </button>
               <button onClick={() => scrollToSection(lightingRentalsRef)} className="hover:text-cyan-400 transition-colors">
-                Lighting
+                Lighting Rentals
               </button>
               <button onClick={() => scrollToSection(ledDesignRef)} className="hover:text-cyan-400 transition-colors">
-                LED
+                Custom LED Design
+              </button>
+              <button onClick={() => scrollToSection(experientialRef)} className="hover:text-cyan-400 transition-colors">
+                Experiential Design
               </button>
               <button onClick={() => scrollToSection(contactRef)} className="hover:text-cyan-400 transition-colors">
                 Contact
@@ -261,10 +264,13 @@ function App() {
                 Sound Rentals
               </button>
               <button onClick={() => scrollToSection(lightingRentalsRef)} className="block w-full text-left py-2 hover:text-cyan-400 transition-colors">
-                Lighting
+                Lighting Rentals
               </button>
               <button onClick={() => scrollToSection(ledDesignRef)} className="block w-full text-left py-2 hover:text-cyan-400 transition-colors">
-                LED
+                Custom LED Design
+              </button>
+              <button onClick={() => scrollToSection(experientialRef)} className="block w-full text-left py-2 hover:text-cyan-400 transition-colors">
+                Experiential Design
               </button>
               <button onClick={() => scrollToSection(contactRef)} className="block w-full text-left py-2 hover:text-cyan-400 transition-colors">
                 Contact
