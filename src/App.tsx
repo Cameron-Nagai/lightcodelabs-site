@@ -55,7 +55,7 @@ function App() {
     },
     { url: 'https://i.imgur.com/VFkCnKM.jpeg?auto=compress&cs=tinysrgb&w=1200', caption: 'Custom Stage Design', type: 'image' },
     { url: 'https://i.imgur.com/cAZhXp5.jpeg', caption: 'Concert Stage Packages', type: 'image' },
-    { url: 'https://i.imgur.com/LmSOeyZ.gif?auto=compress&cs=tinysrgb&w=1200', caption: 'Venue Lighting Design', type: 'image' }
+    { url: 'https://i.imgur.com/LmSOeyZ.gif?auto=compress&cs=tinysrgb&w=1200', caption: 'Experiential Lighting Design', type: 'image' }
   ];
 
   const soundRentalsPortfolio = [
