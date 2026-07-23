@@ -63,9 +63,19 @@ function App() {
   ];
 
   // Sound rental inventory
-  const soundEquipment = [
-    {
-      name: 'Void Air Motion v2',
+          <div className="mt-10 text-center">
+            <button
+              onClick={scrollToSoundQuote}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Get a Sound Quote
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* === USE CASES === */
       quantity: 4,
       blurb: 'Visually stunning, fiberglass sculpted, high-output loudspeaker. Ideal as mains speakers for 500–1000 person events.'
     },
@@ -333,7 +343,7 @@ function App() {
           <h3 className="text-2xl font-semibold text-center mb-8 text-cyan-400">
             Available Sound Equipment
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
             {soundEquipment.map((item, index) => (
               <div
                 key={index}
@@ -352,9 +362,7 @@ function App() {
             ))}
           </div>
 
-          <Carousel images={soundRentalsPortfolio} />
-
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="my-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => scrollToSection(soundSystemPickerRef)}
               className="bg-gray-800 hover:bg-gray-700 text-cyan-400 font-semibold px-6 py-3 rounded-lg border border-gray-700 hover:border-cyan-400 transition-colors"
@@ -368,6 +376,8 @@ function App() {
               Sound Rental Packages
             </button>
           </div>
+
+          <Carousel images={soundRentalsPortfolio} />
         </div>
       </section>
 
