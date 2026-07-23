@@ -1,7 +1,8 @@
 import { useState, useRef } from 'react';
-import { Zap, Music, Sparkles, Mail, Menu, X, Lightbulb } from 'lucide-react';
+import { Zap, Music, Sparkles, Menu, X, Lightbulb } from 'lucide-react';
 import Carousel from './components/Carousel';
 import ServiceCard from './components/ServiceCard';
+import ContactForm from './components/ContactForm';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -295,14 +296,7 @@ function App() {
             Ready to bring your vision to life? Get in touch for a quote.
           </p>
 
-          <div className="grid md:grid-cols-1 gap-6 mb-12">
-            <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg">
-              <Mail className="w-8 h-8 text-cyan-400 mb-3" />
-              <h3 className="font-semibold mb-2">Email Us</h3>
-              <p className="text-gray-300 text-center">hello@lightcodelabs.studio</p>
-            </div>
-          </div>
-
+          <ContactForm />
         </div>
       </section>
 

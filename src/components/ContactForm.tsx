@@ -1,50 +1,108 @@
 import { useState, FormEvent } from 'react';
-import { Send } from 'lucide-react';
+import { Send, Mail } from 'lucide-react';
+
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
 function ContactForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
-    phone: '',
-    eventType: '',
     message: ''
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const accessKey = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    if (!accessKey) {
+      setSubmitStatus('error');
+      setErrorMessage('Form is not configured yet. Please email us directly.');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setErrorMessage('');
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New contact from ${formData.name} via lightcodelabs.studio`,
+          from_name: 'Lightcode Labs Website',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          botcheck: ''
+        })
+      });
 
-    setSubmitStatus('success');
-    setIsSubmitting(false);
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      eventType: '',
-      message: ''
-    });
+      const result = await response.json();
 
-    setTimeout(() => {
-      setSubmitStatus('idle');
-    }, 3000);
+      if (result.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        setSubmitStatus('error');
+        setErrorMessage(result.message || 'Something went wrong. Please try again or email us directly.');
+      }
+    } catch {
+      setSubmitStatus('error');
+      setErrorMessage('Network error. Please try again or email us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
+  if (!accessKey) {
+    return (
+      <div className="bg-gray-800 rounded-2xl p-8 shadow-xl">
+        <div className="text-center py-8">
+          <Mail className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
+          <h3 className="text-xl font-semibold mb-3">Get in touch</h3>
+          <p className="text-gray-300 mb-2">
+            Email us at{' '}
+            <a
+              href="mailto:hello@lightcodelabs.studio"
+              className="text-cyan-400 hover:text-cyan-300 transition-colors font-semibold"
+            >
+              hello@lightcodelabs.studio
+            </a>
+          </p>
+          <p className="text-sm text-gray-500 mt-4">
+            The contact form will be available shortly.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="bg-gray-800 rounded-2xl p-8 shadow-xl">
-      <div className="grid md:grid-cols-2 gap-6 mb-6">
+    <form onSubmit={handleSubmit} className="bg-gray-800 rounded-2xl p-8 shadow-xl space-y-6">
+      <div className="grid sm:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block text-sm font-semibold mb-2">
             Name *
@@ -76,44 +134,9 @@ function ContactForm() {
             placeholder="your@email.com"
           />
         </div>
-
-        <div>
-          <label htmlFor="phone" className="block text-sm font-semibold mb-2">
-            Phone
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent outline-none transition-all"
-            placeholder="(555) 123-4567"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="eventType" className="block text-sm font-semibold mb-2">
-            Event Type
-          </label>
-          <select
-            id="eventType"
-            name="eventType"
-            value={formData.eventType}
-            onChange={handleChange}
-            className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent outline-none transition-all"
-          >
-            <option value="">Select event type</option>
-            <option value="corporate">Corporate Event</option>
-            <option value="wedding">Wedding</option>
-            <option value="concert">Concert/Festival</option>
-            <option value="private">Private Party</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
       </div>
 
-      <div className="mb-6">
+      <div>
         <label htmlFor="message" className="block text-sm font-semibold mb-2">
           Message *
         </label>
@@ -125,13 +148,19 @@ function ContactForm() {
           required
           rows={5}
           className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent outline-none transition-all resize-none"
-          placeholder="Tell us about your event and what you're looking for..."
+          placeholder="Tell us about your event, project, or rental needs..."
         />
       </div>
 
       {submitStatus === 'success' && (
-        <div className="mb-6 p-4 bg-emerald-500/20 border border-emerald-500 rounded-lg text-emerald-400">
-          Thank you! We'll get back to you soon.
+        <div className="p-4 bg-emerald-500/20 border border-emerald-500 rounded-lg text-emerald-400">
+          Thanks! Your message is on its way. We'll get back to you soon.
+        </div>
+      )}
+
+      {submitStatus === 'error' && (
+        <div className="p-4 bg-red-500/20 border border-red-500 rounded-lg text-red-400">
+          {errorMessage}
         </div>
       )}
 
@@ -148,10 +177,20 @@ function ContactForm() {
         ) : (
           <>
             <Send className="w-5 h-5" />
-            Send Request
+            Send Message
           </>
         )}
       </button>
+
+      <p className="text-center text-sm text-gray-400">
+        Or email us directly at{' '}
+        <a
+          href="mailto:hello@lightcodelabs.studio"
+          className="text-cyan-400 hover:text-cyan-300 transition-colors"
+        >
+          hello@lightcodelabs.studio
+        </a>
+      </p>
     </form>
   );
 }
