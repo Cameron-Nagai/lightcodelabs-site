@@ -292,9 +292,9 @@ function App() {
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-            Illuminate Your
+            Sound and Lighting
             <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-              Next Event
+              Like You've Never Seen or Heard Before
             </span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
