@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Menu, X, MessageCircle } from 'lucide-react';
+import { Menu, X, MessageCircle, Instagram, Facebook } from 'lucide-react';
 import Carousel from './components/Carousel';
 import ServiceCard from './components/ServiceCard';
 import ContactForm from './components/ContactForm';
@@ -248,12 +248,32 @@ function App() {
               </button>
             </div>
 
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 hover:bg-gray-800 rounded-lg transition-colors"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            <div className="flex items-center space-x-2">
+              <a
+                href="https://www.instagram.com/lightcodelabs/?hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Lightcode Labs on Instagram"
+                className="p-2 text-gray-300 hover:text-cyan-400 transition-colors"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61591775623586"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Lightcode Labs on Facebook"
+                className="p-2 text-gray-300 hover:text-cyan-400 transition-colors"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden p-2 hover:bg-gray-800 rounded-lg transition-colors"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -275,6 +295,28 @@ function App() {
               <button onClick={() => scrollToSection(contactRef)} className="block w-full text-left py-2 hover:text-cyan-400 transition-colors">
                 Contact
               </button>
+              <div className="pt-3 mt-2 border-t border-gray-700 flex items-center space-x-4">
+                <a
+                  href="https://www.instagram.com/lightcodelabs/?hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Lightcode Labs on Instagram"
+                  className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors"
+                >
+                  <Instagram className="w-5 h-5" />
+                  <span>Instagram</span>
+                </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61591775623586"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Lightcode Labs on Facebook"
+                  className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors"
+                >
+                  <Facebook className="w-5 h-5" />
+                  <span>Facebook</span>
+                </a>
+              </div>
             </div>
           </div>
         )}
