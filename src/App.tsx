@@ -298,7 +298,7 @@ function App() {
             </span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
-            Sound and lighting rental for weddings, corporate events, festivals, DJ sets, and live music. Pro gear, on-site tech, packages from $1,000.
+            
           </p>
           <button
             onClick={() => scrollToSection(servicesRef)}
