@@ -297,9 +297,6 @@ function App() {
               Like You've Never Seen or Heard Before
             </span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
-            
-          </p>
           <button
             onClick={() => scrollToSection(servicesRef)}
             className="bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
