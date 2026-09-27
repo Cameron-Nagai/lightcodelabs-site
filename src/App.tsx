@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { Menu, X, MessageCircle, Instagram, Facebook } from 'lucide-react';
 import Carousel from './components/Carousel';
+import Portfolio, { PortfolioProject } from './components/Portfolio';
 import ServiceCard from './components/ServiceCard';
 import ContactForm from './components/ContactForm';
 
@@ -15,6 +16,7 @@ function App() {
   const soundUseCasesRef = useRef<HTMLElement>(null);
   const ledDesignRef = useRef<HTMLElement>(null);
   const experientialRef = useRef<HTMLElement>(null);
+  const portfolioRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
 
   const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
@@ -214,6 +216,98 @@ function App() {
     { url: 'https://live.staticflickr.com/65535/54972794923_52fbc8834a_b.jpg?auto=compress&cs=tinysrgb&w=1200', caption: 'Gong Fu Tea Ceremony', type: 'image' }
   ];
 
+  const portfolioProjects: PortfolioProject[] = [
+    {
+      name: 'The SugarCubes',
+      images: [
+        'https://i.imgur.com/uh2OR3T.jpeg',
+        'https://i.imgur.com/pE3MoSd.jpeg',
+        'https://i.imgur.com/SWjNrjW.jpeg',
+        'https://i.imgur.com/7yCXEjk.jpeg',
+        'https://i.imgur.com/FVDnwPX.jpeg'
+      ]
+    },
+    {
+      name: 'Butterflies',
+      images: [
+        'https://i.imgur.com/goG5Rml.jpeg',
+        'https://i.imgur.com/0GAEo3T.jpeg',
+        'https://i.imgur.com/LFwnsa6.jpeg',
+        'https://i.imgur.com/WrizwVB.jpeg',
+        'https://i.imgur.com/jzZ7Liy.jpeg'
+      ]
+    },
+    {
+      name: 'Church of Cannabis',
+      images: [
+        'https://i.imgur.com/7q1d75k.jpeg',
+        'https://i.imgur.com/RuZXzkB.jpeg'
+      ]
+    },
+    {
+      name: 'Cloud Room – Electric Forest Festival',
+      images: [
+        'https://i.imgur.com/qNZt2dj.jpeg',
+        'https://i.imgur.com/NQPhrLd.jpeg',
+        'https://i.imgur.com/2OYVUng.jpeg'
+      ]
+    },
+    {
+      name: 'Galactic Meadow',
+      images: [
+        'https://i.imgur.com/1s3uaY7.jpeg',
+        'https://i.imgur.com/ALgqt8U.jpeg'
+      ]
+    },
+    {
+      name: 'The Cuttlefish',
+      images: [
+        'https://i.imgur.com/nX6zw8j.jpeg',
+        'https://i.imgur.com/eWsVOfw.jpeg',
+        'https://i.imgur.com/s6J6i7C.jpeg',
+        'https://i.imgur.com/bD9HNJn.jpeg',
+        'https://i.imgur.com/WvbuumQ.jpeg'
+      ]
+    },
+    {
+      name: 'Flash the Turtle',
+      images: [
+        'https://i.imgur.com/ZSgyLsT.jpeg',
+        'https://i.imgur.com/aVhqzwR.jpeg'
+      ]
+    },
+    {
+      name: 'Jellyfish Fields',
+      images: [
+        'https://i.imgur.com/fn2xnij.jpeg',
+        'https://i.imgur.com/QFuEyuH.jpeg',
+        'https://i.imgur.com/LhCQO0z.jpeg'
+      ]
+    },
+    {
+      name: 'Protea Flower',
+      images: [
+        'https://i.imgur.com/RLOMle9.jpeg',
+        'https://i.imgur.com/8VX605s.jpeg',
+        'https://i.imgur.com/M7CiUlg.jpeg'
+      ]
+    },
+    {
+      name: 'Vine Wall',
+      images: [
+        'https://i.imgur.com/rE8xQpw.jpeg',
+        'https://i.imgur.com/IXHRhH2.jpeg'
+      ]
+    },
+    {
+      name: 'Apres Ski Sign',
+      images: [
+        'https://i.imgur.com/ck6hbdP.jpeg',
+        'https://i.imgur.com/c3hIrNS.jpeg'
+      ]
+    }
+  ];
+
   const scrollToSoundQuote = () => {
     contactRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     setMobileMenuOpen(false);
@@ -242,6 +336,9 @@ function App() {
               </button>
               <button onClick={() => scrollToSection(experientialRef)} className="hover:text-cyan-400 transition-colors">
                 Experiential Design
+              </button>
+              <button onClick={() => scrollToSection(portfolioRef)} className="hover:text-cyan-400 transition-colors">
+                Portfolio
               </button>
               <button onClick={() => scrollToSection(contactRef)} className="hover:text-cyan-400 transition-colors">
                 Contact
@@ -291,6 +388,9 @@ function App() {
               </button>
               <button onClick={() => scrollToSection(experientialRef)} className="block w-full text-left py-2 hover:text-cyan-400 transition-colors">
                 Experiential Design
+              </button>
+              <button onClick={() => scrollToSection(portfolioRef)} className="block w-full text-left py-2 hover:text-cyan-400 transition-colors">
+                Portfolio
               </button>
               <button onClick={() => scrollToSection(contactRef)} className="block w-full text-left py-2 hover:text-cyan-400 transition-colors">
                 Contact
@@ -646,7 +746,17 @@ function App() {
         </div>
       </section>
 
-      <section ref={contactRef} className="py-20 px-4 bg-gray-800 scroll-mt-16">
+      <section ref={portfolioRef} className="py-20 px-4 bg-gray-800 scroll-mt-16">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Our Portfolio</h2>
+          <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
+            A look at the custom LED sculptures and immersive installations we've built for festivals, venues, and brands. Pick a project to explore the build.
+          </p>
+          <Portfolio projects={portfolioProjects} onContactClick={scrollToSoundQuote} />
+        </div>
+      </section>
+
+      <section ref={contactRef} className="py-20 px-4 bg-gray-900 scroll-mt-16">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             Let's Create Something Amazing

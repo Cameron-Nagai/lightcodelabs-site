@@ -17,6 +17,7 @@ function Carousel({ images }: CarouselProps) {
   const [isMuted, setIsMuted] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [showControls, setShowControls] = useState(false);
+  const [isPortrait, setIsPortrait] = useState(false);
   const videoRef = useRef<HTMLIFrameElement>(null);
   
   // Reset video state when changing slides
@@ -24,6 +25,7 @@ function Carousel({ images }: CarouselProps) {
     setIsPlaying(false);
     setVideoLoaded(false);
     setShowControls(false);
+    setIsPortrait(false);
   }, [currentIndex]);
 
   const goToPrevious = () => {
@@ -162,16 +164,24 @@ function Carousel({ images }: CarouselProps) {
         );
       case 'image':
       default:
-        // Check if the image is an animated WebP or GIF
-        const isAnimated = item.url.endsWith('.gif') || item.url.endsWith('.webp');
-        
         return (
-          <img
-            src={item.url}
-            alt={item.caption}
-            className={`w-full h-full ${isAnimated ? 'object-contain' : 'object-cover'} transition-opacity duration-500`}
-            loading="eager" // Ensure animated content loads immediately
-          />
+          <div className="relative w-full h-full">
+            <img
+              src={item.url}
+              alt=""
+              aria-hidden="true"
+              referrerPolicy="no-referrer"
+              className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-50"
+            />
+            <img
+              src={item.url}
+              alt={item.caption}
+              onLoad={(e) => setIsPortrait(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth)}
+              className="relative w-full h-full object-contain transition-opacity duration-500"
+              referrerPolicy="no-referrer"
+              loading="eager" // Ensure animated content loads immediately
+            />
+          </div>
         );
     }
   };
@@ -185,7 +195,7 @@ function Carousel({ images }: CarouselProps) {
 
   return (
     <div className="relative w-full max-w-6xl mx-auto">
-      <div className="relative h-96 md:h-[500px] overflow-hidden rounded-2xl bg-gray-950">
+      <div className={`relative overflow-hidden rounded-2xl bg-gray-950 transition-[height] duration-500 ${isPortrait ? 'h-[32rem] md:h-[700px]' : 'h-96 md:h-[500px]'}`}>
         {renderMedia()}
 
         {/* Only show gradient overlay for images, not for videos */}
