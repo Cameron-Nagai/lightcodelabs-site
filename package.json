@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node -e \"require('fs').existsSync('.env') && /^VITE_WEB3FORMS_KEY=\\S+/m.test(require('fs').readFileSync('.env','utf8')) || process.env.VITE_WEB3FORMS_KEY || (console.error('\\nERROR: VITE_WEB3FORMS_KEY is missing. Add it to .env or the contact form will not render.\\n'), process.exit(1))\"",
     "build": "rm -rf docs dist && vite build",
-    "deploy": "rm -rf docs dist && vite build && touch docs/.nojekyll",
+    "deploy": "npm run build && touch docs/.nojekyll",
     "lint": "eslint .",
     "preview": "vite preview"
   },
