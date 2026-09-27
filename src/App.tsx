@@ -245,7 +245,7 @@ function App() {
       ]
     },
     {
-      name: 'Cloud Room – Electric Forest Festival',
+      name: 'Cloud Room Electric Forest Festival',
       images: [
         'https://i.imgur.com/qNZt2dj.jpeg',
         'https://i.imgur.com/NQPhrLd.jpeg',
