@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { X } from 'lucide-react';
 import Carousel from './Carousel';
 
 export interface PortfolioProject {
@@ -12,36 +13,43 @@ interface PortfolioProps {
 }
 
 function Portfolio({ projects, onContactClick }: PortfolioProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const active = projects[activeIndex];
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const open = openIndex === null ? null : projects[openIndex];
+
+  useEffect(() => {
+    if (openIndex === null) return;
+    document.body.style.overflow = 'hidden';
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpenIndex(null);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [openIndex]);
 
   return (
     <div>
-      <div className="flex flex-wrap justify-center gap-3 mb-10">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project, index) => (
           <button
             key={project.name}
-            aria-pressed={index === activeIndex}
-            onClick={() => setActiveIndex(index)}
-            className={`px-5 py-2 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
-              index === activeIndex
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30'
-                : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
-            }`}
+            onClick={() => setOpenIndex(index)}
+            className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-950 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            aria-label={`View ${project.name} photos`}
           >
-            {project.name}
+            <img src={project.images[0]} alt={project.name} referrerPolicy="no-referrer" loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-gray-900/40" />
+            <span className="absolute top-4 left-4 bg-gray-900/80 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm md:text-base font-semibold text-white">
+              {project.name}
+            </span>
+            <span className="absolute bottom-4 right-4 bg-gray-900/70 backdrop-blur-sm px-3 py-1 rounded-full text-xs text-gray-200">
+              {project.images.length} {project.images.length === 1 ? 'photo' : 'photos'}
+            </span>
           </button>
         ))}
       </div>
-
-      <Carousel
-        key={active.name}
-        images={active.images.map((url, i) => ({
-          url,
-          caption: `${active.name} · ${i + 1} / ${active.images.length}`,
-          type: 'image'
-        }))}
-      />
 
       <div className="text-center mt-12">
         <p className="text-gray-300 mb-4">Want something like this at your event?</p>
@@ -52,6 +60,31 @@ function Portfolio({ projects, onContactClick }: PortfolioProps) {
           Start Your Project
         </button>
       </div>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 md:p-8"
+          onClick={() => setOpenIndex(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${open.name} photos`}
+        >
+          <button
+            onClick={() => setOpenIndex(null)}
+            className="absolute top-4 right-4 md:top-6 md:right-6 bg-gray-900/80 hover:bg-gray-800 p-3 rounded-full transition-all hover:scale-110"
+            aria-label="Close"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <div className="w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-6">{open.name}</h3>
+            <Carousel
+              key={open.name}
+              images={open.images.map((url, i) => ({ url, caption: `${open.name} · ${i + 1} / ${open.images.length}`, type: 'image' }))}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
