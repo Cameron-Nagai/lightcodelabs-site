@@ -305,6 +305,14 @@ function App() {
         'https://i.imgur.com/ck6hbdP.jpeg',
         'https://i.imgur.com/c3hIrNS.jpeg'
       ]
+    },
+    {
+      name: 'Gary the Snail',
+      images: [
+        'https://i.imgur.com/9Cr1b3V.jpeg',
+        'https://i.imgur.com/nCgKWvZ.jpeg',
+        'https://i.imgur.com/xgVltdh.jpeg'
+      ]
     }
   ];
 
