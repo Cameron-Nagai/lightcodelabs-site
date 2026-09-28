@@ -447,12 +447,20 @@ function App() {
               Like You've Never Seen or Heard Before
             </span>
           </h1>
-          <button
-            onClick={() => scrollToSection(servicesRef)}
-            className="bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
-          >
-            Explore Our Services
-          </button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button
+              onClick={() => scrollToSection(servicesRef)}
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
+            >
+              Explore Our Services
+            </button>
+            <button
+              onClick={() => scrollToSection(portfolioRef)}
+              className="border-2 border-cyan-400 text-cyan-400 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-400/10 hover:shadow-lg hover:shadow-cyan-500/30 transform hover:scale-105 transition-all duration-300"
+            >
+              View Our Portfolio
+            </button>
+          </div>
         </div>
       </header>
 
