@@ -1,12 +1,20 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Menu, X, MessageCircle, Instagram, Facebook } from 'lucide-react';
 import Carousel from './components/Carousel';
 import Portfolio, { PortfolioProject } from './components/Portfolio';
 import ServiceCard from './components/ServiceCard';
 import ContactForm from './components/ContactForm';
+import Hero from './components/Hero';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const servicesRef = useRef<HTMLElement>(null);
   const lightingRentalsRef = useRef<HTMLElement>(null);
@@ -323,7 +331,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
+      <nav className={`fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300 ${scrolled || mobileMenuOpen ? 'bg-gray-900/95 backdrop-blur-sm border-gray-800' : 'bg-transparent border-transparent'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-2">
@@ -430,39 +438,7 @@ function App() {
         )}
       </nav>
 
-      <header className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://i.imgur.com/jT0NDcf.jpeg"
-            alt="Event lighting and sound production"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/70 via-gray-900/50 to-gray-900"></div>
-        </div>
-
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-            Sound and Lighting
-            <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-              Like You've Never Seen or Heard Before
-            </span>
-          </h1>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => scrollToSection(servicesRef)}
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
-            >
-              Explore Our Services
-            </button>
-            <button
-              onClick={() => scrollToSection(portfolioRef)}
-              className="border-2 border-cyan-400 text-cyan-400 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-400/10 hover:shadow-lg hover:shadow-cyan-500/30 transform hover:scale-105 transition-all duration-300"
-            >
-              View Our Portfolio
-            </button>
-          </div>
-        </div>
-      </header>
+      <Hero />
 
       <section ref={servicesRef} className="py-20 px-4 bg-gray-900 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
@@ -494,7 +470,7 @@ function App() {
       </section>
 
       {/* === SOUND RENTAL SECTION === */}
-      <section ref={soundRentalsRef} className="py-20 px-4 bg-gray-900 scroll-mt-16">
+      <section ref={soundRentalsRef} id="sound-rentals" className="py-20 px-4 bg-gray-900 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Event Sound Rentals</h2>
           <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
@@ -702,7 +678,7 @@ function App() {
         </div>
       </section>
 
-      <section ref={lightingRentalsRef} className="py-20 px-4 bg-gray-800 scroll-mt-16">
+      <section ref={lightingRentalsRef} id="lighting-rentals" className="py-20 px-4 bg-gray-800 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Event Lighting Rentals</h2>
           <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
@@ -722,7 +698,7 @@ function App() {
         </div>
       </section>
 
-      <section ref={ledDesignRef} className="py-20 px-4 bg-gray-800 scroll-mt-16">
+      <section ref={ledDesignRef} id="led-design" className="py-20 px-4 bg-gray-800 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Custom LED Lighting Design</h2>
           <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
@@ -742,7 +718,7 @@ function App() {
         </div>
       </section>
 
-      <section ref={experientialRef} className="py-20 px-4 bg-gray-900 scroll-mt-16">
+      <section ref={experientialRef} id="experiential-design" className="py-20 px-4 bg-gray-900 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Experiential Design for Events</h2>
           <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
@@ -762,7 +738,7 @@ function App() {
         </div>
       </section>
 
-      <section ref={portfolioRef} className="py-20 px-4 bg-gray-800 scroll-mt-16">
+      <section ref={portfolioRef} id="portfolio" className="py-20 px-4 bg-gray-800 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Our Portfolio</h2>
           <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
@@ -772,7 +748,7 @@ function App() {
         </div>
       </section>
 
-      <section ref={contactRef} className="py-20 px-4 bg-gray-900 scroll-mt-16">
+      <section ref={contactRef} id="contact" className="py-20 px-4 bg-gray-900 scroll-mt-16">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             Let's Create Something Amazing
