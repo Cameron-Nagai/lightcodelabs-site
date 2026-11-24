@@ -79,20 +79,20 @@ function ContactForm() {
 
   if (!accessKey) {
     return (
-      <div className="bg-gray-800 rounded-2xl p-8 shadow-xl">
+      <div className="lc-card lc-card--static p-8">
         <div className="text-center py-8">
-          <Mail className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
+          <Mail className="w-12 h-12 text-teal-400 mx-auto mb-4" />
           <h3 className="text-xl font-semibold mb-3">Get in touch</h3>
-          <p className="text-gray-300 mb-2">
+          <p className="text-white/70 mb-2">
             Email us at{' '}
             <a
               href="mailto:hello@lightcodelabs.studio"
-              className="text-cyan-400 hover:text-cyan-300 transition-colors font-semibold"
+              className="text-teal-400 hover:text-teal-300 transition-colors font-semibold"
             >
               hello@lightcodelabs.studio
             </a>
           </p>
-          <p className="text-sm text-gray-500 mt-4">
+          <p className="text-sm text-white/40 mt-4">
             The contact form will be available shortly.
           </p>
         </div>
@@ -101,10 +101,10 @@ function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-gray-800 rounded-2xl p-8 shadow-xl space-y-6">
+    <form onSubmit={handleSubmit} className="lc-card lc-card--static p-8 space-y-6">
       <div className="grid sm:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-semibold mb-2">
+          <label htmlFor="name" className="block text-sm font-semibold text-white/80 mb-2">
             Name *
           </label>
           <input
@@ -114,13 +114,13 @@ function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent outline-none transition-all"
+            className="w-full px-4 py-3 bg-black/60 border border-white/10 rounded-lg focus:ring-2 focus:ring-teal-400 focus:border-transparent outline-none transition-all"
             placeholder="Your name"
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-semibold mb-2">
+          <label htmlFor="email" className="block text-sm font-semibold text-white/80 mb-2">
             Email *
           </label>
           <input
@@ -130,14 +130,14 @@ function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent outline-none transition-all"
+            className="w-full px-4 py-3 bg-black/60 border border-white/10 rounded-lg focus:ring-2 focus:ring-teal-400 focus:border-transparent outline-none transition-all"
             placeholder="your@email.com"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-semibold mb-2">
+        <label htmlFor="message" className="block text-sm font-semibold text-white/80 mb-2">
           Message *
         </label>
         <textarea
@@ -147,7 +147,7 @@ function ContactForm() {
           onChange={handleChange}
           required
           rows={5}
-          className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent outline-none transition-all resize-none"
+          className="w-full px-4 py-3 bg-black/60 border border-white/10 rounded-lg focus:ring-2 focus:ring-teal-400 focus:border-transparent outline-none transition-all resize-none"
           placeholder="Tell us about your event, project, or rental needs..."
         />
       </div>
@@ -167,11 +167,11 @@ function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+        className="lc-btn w-full px-8 py-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {isSubmitting ? (
           <>
-            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-5 h-5 border-2 border-black/60 border-t-transparent rounded-full animate-spin"></div>
             Sending...
           </>
         ) : (
@@ -182,11 +182,11 @@ function ContactForm() {
         )}
       </button>
 
-      <p className="text-center text-sm text-gray-400">
+      <p className="text-center text-sm text-white/40">
         Or email us directly at{' '}
         <a
           href="mailto:hello@lightcodelabs.studio"
-          className="text-cyan-400 hover:text-cyan-300 transition-colors"
+          className="text-teal-400 hover:text-teal-300 transition-colors"
         >
           hello@lightcodelabs.studio
         </a>

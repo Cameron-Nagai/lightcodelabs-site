@@ -1,32 +1,124 @@
 import { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, ExternalLink, Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 
-interface CarouselItem {
+export interface CarouselItem {
   url: string;
   caption: string;
-  type?: 'image' | 'video' | 'gdrive-video' | 'youtube-video';
+  type?: 'image' | 'video' | 'gdrive-video' | 'youtube-video' | 'loop';
+  poster?: string;
 }
 
 interface CarouselProps {
   images: CarouselItem[];
 }
 
+function LoopClip({ item, near, visible }: { item: CarouselItem; near: boolean; visible: boolean }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => {
+      if (visible && document.visibilityState === 'visible' && !motionQuery.matches) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    };
+    update();
+    document.addEventListener('visibilitychange', update);
+    motionQuery.addEventListener('change', update);
+    return () => {
+      document.removeEventListener('visibilitychange', update);
+      motionQuery.removeEventListener('change', update);
+    };
+  }, [near, visible, item.url]);
+
+  return (
+    <div className="relative w-full h-full">
+      <img
+        src={item.poster}
+        alt={item.caption}
+        referrerPolicy="no-referrer"
+        decoding="async"
+        loading="lazy"
+        className="w-full h-full object-contain"
+      />
+      {near && !failed && (
+        <video
+          src={item.url}
+          poster={item.poster}
+          muted
+          playsInline
+          loop
+          preload="metadata"
+          aria-label={item.caption}
+          onError={() => setFailed(true)}
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-contain"
+        />
+      )}
+    </div>
+  );
+}
+
 function Carousel({ images }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const [showControls, setShowControls] = useState(false);
   const [isPortrait, setIsPortrait] = useState(false);
-  const videoRef = useRef<HTMLIFrameElement>(null);
-  
+  const frame = useRef<HTMLDivElement>(null);
+  const [near, setNear] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const prefetched = useRef(new Set<string>());
+
   // Reset video state when changing slides
   useEffect(() => {
-    setIsPlaying(false);
     setVideoLoaded(false);
-    setShowControls(false);
     setIsPortrait(false);
   }, [currentIndex]);
+
+  useEffect(() => {
+    const el = frame.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === 'undefined') {
+      setNear(true);
+      setVisible(true);
+      return;
+    }
+    const nearObs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setNear(true);
+          nearObs.disconnect();
+        }
+      });
+    }, { rootMargin: '500px' });
+    const visObs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => setVisible(entry.isIntersecting));
+    });
+    nearObs.observe(el);
+    visObs.observe(el);
+    return () => {
+      nearObs.disconnect();
+      visObs.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!visible || images.length < 2) return;
+    if ((navigator as { connection?: { saveData?: boolean } }).connection?.saveData) return;
+    const next = images[(currentIndex + 1) % images.length];
+    const nextType = next.type || 'image';
+    const src = nextType === 'loop' ? next.poster : nextType === 'image' ? next.url : undefined;
+    if (!src || prefetched.current.has(src)) return;
+    prefetched.current.add(src);
+    const img = new Image();
+    img.referrerPolicy = 'no-referrer';
+    img.decoding = 'async';
+    img.src = src;
+  }, [visible, currentIndex, images]);
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) =>
@@ -44,6 +136,9 @@ function Carousel({ images }: CarouselProps) {
     setCurrentIndex(index);
   };
 
+  const hasVideo = images.some((item) => item.type === 'video');
+  const isVideoSlide = images[currentIndex].type === 'video';
+
   // Helper function to extract YouTube video ID
   const getYouTubeVideoId = (url: string) => {
     // Extract video ID from various YouTube URL formats
@@ -51,7 +146,7 @@ function Carousel({ images }: CarouselProps) {
     const match = url.match(regExp);
     return (match && match[7].length === 11) ? match[7] : null;
   };
-  
+
   // Helper function to convert YouTube URL to embed URL
   const getYouTubeEmbedUrl = (url: string) => {
     const videoId = getYouTubeVideoId(url);
@@ -61,7 +156,7 @@ function Carousel({ images }: CarouselProps) {
     }
     return url;
   };
-  
+
   // Helper function to convert Google Drive URL to embed URL (keeping for reference)
   const getGDriveEmbedUrl = (url: string) => {
     const fileIdMatch = url.match(/[-\w]{25,}/);
@@ -70,77 +165,56 @@ function Carousel({ images }: CarouselProps) {
     }
     return url;
   };
-  
+
   // Function to render the appropriate media based on type
   const renderMedia = () => {
     const item = images[currentIndex];
     const type = item.type || 'image'; // Default to image if not specified
 
     switch (type) {
-      case 'youtube-video':
+      case 'youtube-video': {
         const videoId = getYouTubeVideoId(item.url);
         const embedUrl = getYouTubeEmbedUrl(item.url);
         const thumbnailUrl = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '';
-        
+
         if (!videoLoaded) {
           // Show thumbnail with play button until user clicks to load video
           return (
-            <div className="w-full h-full relative group cursor-pointer" onClick={() => setVideoLoaded(true)}>
+            <button
+              type="button"
+              className="w-full h-full relative group cursor-pointer block"
+              onClick={() => setVideoLoaded(true)}
+              aria-label={`Play ${item.caption}`}
+            >
               {/* Thumbnail image */}
-              <img 
-                src={thumbnailUrl} 
+              <img
+                src={thumbnailUrl}
                 alt={item.caption}
                 className="w-full h-full object-cover"
               />
-              
+
               {/* Play button overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="bg-black bg-opacity-50 rounded-full p-4 transform transition-transform group-hover:scale-110">
                   <Play size={48} className="text-white" />
                 </div>
               </div>
-            </div>
+            </button>
           );
         }
-        
-        // Show embedded YouTube player with custom controls
+
+        // Show embedded YouTube player with native controls
         return (
-          <div 
-            className="w-full h-full relative" 
-            onMouseEnter={() => setShowControls(true)}
-            onMouseLeave={() => setShowControls(false)}
-          >
-            {/* YouTube iframe with API enabled */}
-            <iframe
-              ref={videoRef}
-              src={embedUrl}
-              className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title={item.caption}
-              frameBorder="0"
-            />
-            
-            {/* Custom video controls */}
-            {showControls && (
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent flex items-center gap-4">
-                <button 
-                  onClick={isPlaying ? pauseVideo : playVideo}
-                  className="text-white hover:text-cyan-400 transition-colors"
-                >
-                  {isPlaying ? <Pause size={24} /> : <Play size={24} />}
-                </button>
-                
-                <button 
-                  onClick={toggleMute}
-                  className="text-white hover:text-cyan-400 transition-colors"
-                >
-                  {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
-                </button>
-              </div>
-            )}
-          </div>
+          <iframe
+            src={embedUrl}
+            className="w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title={item.caption}
+            frameBorder="0"
+          />
         );
+      }
       case 'gdrive-video':
         return (
           <iframe
@@ -159,51 +233,41 @@ function Carousel({ images }: CarouselProps) {
             controls
             autoPlay
             muted
+            playsInline
+            preload="metadata"
+            aria-label={item.caption}
             className="w-full h-full object-contain"
           />
         );
+      case 'loop':
+        return <LoopClip key={item.url} item={item} near={near} visible={visible} />;
       case 'image':
       default:
         return (
-          <div className="relative w-full h-full">
-            <img
-              src={item.url}
-              alt=""
-              aria-hidden="true"
-              referrerPolicy="no-referrer"
-              className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-50"
-            />
-            <img
-              src={item.url}
-              alt={item.caption}
-              onLoad={(e) => setIsPortrait(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth)}
-              className="relative w-full h-full object-contain transition-opacity duration-500"
-              referrerPolicy="no-referrer"
-              loading="eager" // Ensure animated content loads immediately
-            />
-          </div>
+          <img
+            src={item.url}
+            alt={item.caption}
+            onLoad={(e) => setIsPortrait(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth)}
+            referrerPolicy="no-referrer"
+            decoding="async"
+            loading="lazy"
+            className="w-full h-full object-contain"
+          />
         );
     }
   };
 
-  // For debugging - log the current item and its embed URL
-  const currentItem = images[currentIndex];
-  console.log('Current item:', currentItem);
-  if (currentItem.type === 'gdrive-video') {
-    console.log('Embed URL:', getGDriveEmbedUrl(currentItem.url));
-  }
-
   return (
-    <div className="relative w-full max-w-6xl mx-auto">
-      <div className={`relative overflow-hidden rounded-2xl bg-gray-950 transition-[height] duration-500 ${isPortrait ? 'h-[32rem] md:h-[700px]' : 'h-96 md:h-[500px]'}`}>
+    <div ref={frame} className="relative w-full max-w-6xl mx-auto" data-video-slide={isVideoSlide || undefined}>
+      <div className={`carousel-stage relative overflow-hidden rounded-2xl bg-black border border-white/[.08] transition-[height] duration-500 ${isPortrait ? 'h-[32rem] md:h-[700px]' : 'h-96 md:h-[500px]'}`}>
         {renderMedia()}
 
-        {/* Only show gradient overlay for images, not for videos */}
-        {(!images[currentIndex].type || images[currentIndex].type === 'image') && (
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-transparent to-transparent"></div>
+        {/* Only show gradient overlay for images and loops, not for videos */}
+        {(!images[currentIndex].type || images[currentIndex].type === 'image' || images[currentIndex].type === 'loop') && (
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
         )}
 
-        <div className="absolute bottom-0 left-0 right-0 p-8">
+        <div className={`absolute left-0 right-0 p-8 ${isVideoSlide ? 'top-0 pointer-events-none' : 'bottom-0'}`}>
           <p className="text-xl md:text-2xl font-semibold text-white drop-shadow-lg">
             {images[currentIndex].caption}
           </p>
@@ -212,29 +276,29 @@ function Carousel({ images }: CarouselProps) {
 
       <button
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-900/80 hover:bg-gray-800 p-3 rounded-full transition-all hover:scale-110 backdrop-blur-sm"
-        aria-label="Previous image"
+        className="lc-iconbtn absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full transition-all hover:scale-110"
+        aria-label={hasVideo ? 'Previous slide' : 'Previous image'}
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
 
       <button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-900/80 hover:bg-gray-800 p-3 rounded-full transition-all hover:scale-110 backdrop-blur-sm"
-        aria-label="Next image"
+        className="lc-iconbtn absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full transition-all hover:scale-110"
+        aria-label={hasVideo ? 'Next slide' : 'Next image'}
       >
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      <div className="flex justify-center gap-3 mt-6">
+      <div className="carousel-pages flex justify-center gap-3 mt-6">
         {images.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             className={`transition-all duration-300 ${
               index === currentIndex
-                ? 'w-12 h-3 bg-cyan-400'
-                : 'w-3 h-3 bg-gray-600 hover:bg-gray-500'
+                ? 'w-12 h-3 bg-teal-400'
+                : 'w-3 h-3 bg-white/20 hover:bg-white/40'
             } rounded-full`}
             aria-label={`Go to slide ${index + 1}`}
           />
